@@ -1,0 +1,27 @@
+﻿Schedule Maker
+(Class structure draft)
+
+A Schedule Maker is a program that allows users to create, update, and schedule plans efficiently. The program allows users to create schedules for a day, month, or year and add events without any clash.
+
+To implement a Schedule Maker in Java, we can implement an object-oriented approach by creating a number of classes that encapsulate different features of the system. The following is a suggested framework:
+
+
+1) Main class
+-Running the program
+
+
+2) ScheduleManager class (manages all the created schedules)
+-Adding a schedule
+-Removing a schedule
+-Getting a schedule
+-Listing all the schedules
+
+
+3) Schedule class (creates full schedules for a day/month/year)
+-Adding an event
+-Removing an event
+-Listing all events 
+
+
+4) Event class (creates an event)
+-Checking if an event is overlapping with other events

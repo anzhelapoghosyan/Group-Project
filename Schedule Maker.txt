@@ -17,7 +17,7 @@ To implement a Schedule Maker in Java, we can implement an object-oriented appro
 -Listing all the schedules
 
 
-3) Schedule class (creates full schedules for a day/month/year)
+3) Schedule class (creates full schedules for a day/week/month)
 -Adding an event
 -Removing an event
 -Listing all events 

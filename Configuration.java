@@ -13,7 +13,7 @@ public class Configuration {
         return dateFormat;
     }
 
-    public void initialise(Event event) {
+    public void initialise(Event2 event) {
         String[] parts = event.getDate().split(" ");
         if (parts.length != 4) {
             System.out.println("Invalid date format");

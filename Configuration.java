@@ -1,3 +1,4 @@
+// Is designed for Event2 class version
 public class Configuration {
     private String dateFormat;
 

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Event {
+public class Event2 {
     //instance variables
     private String title;
     private String date;
@@ -11,13 +11,13 @@ public class Event {
         configuration = config;
     }
     //no-arg constructor
-    public Event() {
+    public Event2() {
         title = "";
         date = "";
         location = "";
     }
     //constructor
-    public Event(String title, String date, String location) {
+    public Event2(String title, String date, String location) {
         this.title = title;
         this.date = date;
         this.location = location;
@@ -26,7 +26,7 @@ public class Event {
         }
     }
     //copy constructor
-    public Event(Event that) {
+    public Event2(Event2 that) {
         this.title = that.title;
         this.date = that.date;
         this.location = that.location;
@@ -56,7 +56,7 @@ public class Event {
         location = newLocation;
     }
     //method for checking if the new Event object is overlapping with all the others in the schedule
-    public boolean isOverlapping(ArrayList<Event> events) {
+    public boolean isOverlapping(ArrayList<Event2> events) {
     if (events == null || date == null) 
         return false;
 

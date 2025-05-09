@@ -23,7 +23,7 @@ To execute the program, run the MainFrame class.
 References:
 Chua, E. H. (n.d.). Java GUI programming – Swing [Web page]. Nanyang Technological University. https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI.html
 
-OpenAI. (2025, May). ChatGPT response to a user prompt about Java Schedule Maker GUI [Large language model]. https://chatgpt.com/share/681e5546-d57c-800b-98b6-162a5ad37c43
+OpenAI. (2025, May). ChatGPT response to a user prompt about Java Schedule Maker GUI [Large language model]. https://chatgpt.com/share/681e6b1d-d95c-800b-9bd2-7f74f5be46d3
 
 
 Our team: 

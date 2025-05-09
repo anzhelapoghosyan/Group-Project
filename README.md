@@ -26,4 +26,5 @@ OpenAI. (2025, May). ChatGPT response to a user prompt about Java Schedule Maker
 Our team: 
 Anzhela Poghosyan, Edita Khasapetyan, Maria Dallakyan
 
+![Source Code Structure](https://github.com/user-attachments/assets/55e0ba72-0a98-4c55-bdef-33d90aac20b5)
 

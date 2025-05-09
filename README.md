@@ -1,4 +1,4 @@
-# ScheduleMaker-Project
+# Group-Project
 This repository is for a group project in an Object-Oriented Programming (OOP) course. 
 ScheduleProject is a basic Java program for managing and displaying a schedule with a graphical user interface.
 It allows users to view and manage a weekly schedule.

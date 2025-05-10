@@ -57,17 +57,17 @@ public class EventTablePanel extends JPanel {
         eventTable = new JTable(tableModel);
         eventTable.setRowHeight(25);
         eventTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+        
         TableColumnModel columnModel = eventTable.getColumnModel();
         for (int i = 0; i < COLUMN_WIDTHS.length; i++) {
             columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTHS[i]);
         }
-
+        
         // Create a custom cell renderer that wraps text
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
-                                                           boolean isSelected, boolean hasFocus, int row, int column) {
+                    boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 if (c instanceof JLabel) {
                     JLabel label = (JLabel) c;
@@ -79,20 +79,20 @@ public class EventTablePanel extends JPanel {
                 return c;
             }
         };
-
+        
         for (int i = 0; i < eventTable.getColumnCount(); i++) {
             eventTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
-
+        
         eventTable.getTableHeader().setBackground(HEADER_BACKGROUND);
         eventTable.getTableHeader().setForeground(Color.BLACK);
         eventTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
-
+        
         eventTable.setShowGrid(true);
         eventTable.setGridColor(Color.LIGHT_GRAY);
         eventTable.setSelectionBackground(ALTERNATE_ROW_COLOR);
         eventTable.setSelectionForeground(Color.BLACK);
-
+        
         eventTable.setFont(new Font("Arial", Font.PLAIN, 12));
     }
 
@@ -103,10 +103,10 @@ public class EventTablePanel extends JPanel {
         tableModel.setRowCount(0);
         for (Event event : schedule.getEvents()) {
             tableModel.addRow(new Object[]{
-                    event.getTitle(),
-                    event.getLocation(),
-                    event.getFormattedStartDate(),
-                    event.getFormattedStartTime() + " - " + event.getFormattedEndTime()
+                event.getTitle(),
+                event.getLocation(),
+                event.getFormattedStartDate(),
+                event.getFormattedStartTime() + " - " + event.getFormattedEndTime()
             });
         }
     }

@@ -25,7 +25,7 @@ public class WeeklyViewDialog extends JDialog {
     public WeeklyViewDialog(MainFrame mainFrame) {
         super(mainFrame, "Weekly View", true);
         this.mainFrame = mainFrame;
-        setSize(1200, 800);
+        setSize(1600, 800);
         setLocationRelativeTo(mainFrame);
         initializeComponents();
     }
@@ -57,16 +57,16 @@ public class WeeklyViewDialog extends JDialog {
         JPanel calendarPanel = new JPanel(new GridLayout(0, 8, 2, 2));
         calendarPanel.setBackground(Color.WHITE);
 
-        
+
         calendarPanel.add(createTimeLabel());
 
-        
+
         LocalDate weekStart = LocalDate.now().with(DayOfWeek.MONDAY);
         for (int i = 0; i < 7; i++) {
             calendarPanel.add(createDayLabel(weekStart.plusDays(i)));
         }
 
-        
+
         for (int hour = 0; hour < 24; hour++) {
             calendarPanel.add(createHourLabel(hour));
             for (int day = 0; day < 7; day++) {
@@ -93,9 +93,9 @@ public class WeeklyViewDialog extends JDialog {
      * @return a configured JLabel instance
      */
     private JLabel createDayLabel(LocalDate date) {
-        JLabel label = new JLabel(String.format("<html>%s<br>%s</html>", 
-            date.getDayOfWeek(),
-            date.format(java.time.format.DateTimeFormatter.ofPattern("MMM d"))));
+        JLabel label = new JLabel(String.format("<html>%s<br>%s</html>",
+                date.getDayOfWeek(),
+                date.format(java.time.format.DateTimeFormatter.ofPattern("MMM d"))));
         styleHeaderLabel(label);
         return label;
     }
@@ -123,18 +123,18 @@ public class WeeklyViewDialog extends JDialog {
         JPanel cell = new JPanel(new BorderLayout());
         cell.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         cell.setBackground(Color.WHITE);
-        
+
         JPanel eventPanel = new JPanel();
         eventPanel.setLayout(new BoxLayout(eventPanel, BoxLayout.Y_AXIS));
         eventPanel.setBackground(Color.WHITE);
-        
+
         for (Event event : mainFrame.getCurrentSchedule().getEvents()) {
-            if (event.getStart().toLocalDate().equals(date) && 
-                event.getStart().getHour() == hour) {
+            if (event.getStart().toLocalDate().equals(date) &&
+                    event.getStart().getHour() == hour) {
                 eventPanel.add(createEventLabel(event));
             }
         }
-        
+
         cell.add(eventPanel, BorderLayout.CENTER);
         return cell;
     }
@@ -145,9 +145,9 @@ public class WeeklyViewDialog extends JDialog {
      * @return a configured JLabel instance
      */
     private JLabel createEventLabel(Event event) {
-        JLabel label = new JLabel(String.format("<html>%s<br>%s</html>", 
-            event.getTitle(),
-            event.getLocation()));
+        JLabel label = new JLabel(String.format("<html><div style='width: 200px;'>%s<br>%s</div></html>",
+                event.getTitle(),
+                event.getLocation()));
         label.setFont(new Font("Arial", Font.PLAIN, 11));
         label.setForeground(Color.BLACK);
         label.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
@@ -165,8 +165,8 @@ public class WeeklyViewDialog extends JDialog {
         label.setForeground(HEADER_FOREGROUND);
         label.setOpaque(true);
         label.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(Color.BLACK, 1),
-            BorderFactory.createEmptyBorder(10, 5, 10, 5)
+                BorderFactory.createLineBorder(Color.BLACK, 1),
+                BorderFactory.createEmptyBorder(10, 5, 10, 5)
         ));
     }
 
@@ -178,13 +178,13 @@ public class WeeklyViewDialog extends JDialog {
         JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton saveButton = createStyledButton("Save Weekly Schedule");
         JButton closeButton = createStyledButton("Close");
-        
+
         saveButton.addActionListener(e -> {
             mainFrame.getScheduleManager().saveSchedule();
             dispose();
         });
         closeButton.addActionListener(e -> dispose());
-        
+
         controlPanel.add(saveButton);
         controlPanel.add(closeButton);
         return controlPanel;
@@ -204,10 +204,10 @@ public class WeeklyViewDialog extends JDialog {
         button.setBorderPainted(true);
         button.setOpaque(true);
         button.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(MainFrame.DARKER_PINK, 1),
-            BorderFactory.createEmptyBorder(5, 15, 5, 15)
+                BorderFactory.createLineBorder(MainFrame.DARKER_PINK, 1),
+                BorderFactory.createEmptyBorder(5, 15, 5, 15)
         ));
-        
+
         button.addMouseListener(new MouseAdapter() {
             /**
              * Handles mouse enter events for button hover effect.
@@ -225,7 +225,7 @@ public class WeeklyViewDialog extends JDialog {
                 button.setBackground(HEADER_BACKGROUND);
             }
         });
-        
+
         return button;
     }
 }

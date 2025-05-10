@@ -127,7 +127,7 @@ public class ScheduleManager {
         html.append(".time-column { width: 20%; }\n");
         html.append(".event-column { width: 50%; }\n");
         html.append(".location-column { width: 30%; }\n");
-        html.append("td { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }\n");
+        html.append("td { white-space: normal; word-wrap: break-word; overflow-wrap: break-word; }\n");
         html.append("</style>\n</head>\n<body>\n");
         
         html.append("<div class='schedule-container'>\n");

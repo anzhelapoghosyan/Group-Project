@@ -20,7 +20,7 @@ public class EventTablePanel extends JPanel {
     /** The table model backing the event table */
     private DefaultTableModel tableModel;
     private static final String[] COLUMN_NAMES = {"Title", "Location", "Date", "Time"};
-    private static final int[] COLUMN_WIDTHS = {200, 150, 120, 150};
+    private static final int[] COLUMN_WIDTHS = {300, 250, 120, 150};
     private static final Color HEADER_BACKGROUND = MainFrame.SOFT_PINK;
     private static final Color ALTERNATE_ROW_COLOR = new Color(245, 240, 240);
 
@@ -55,38 +55,45 @@ public class EventTablePanel extends JPanel {
             }
         };
         eventTable = new JTable(tableModel);
-        eventTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         eventTable.setRowHeight(25);
-        eventTable.setIntercellSpacing(new Dimension(10, 5));
-        eventTable.setShowGrid(false);
-        eventTable.setFillsViewportHeight(true);
-        eventTable.setForeground(Color.BLACK);
+        eventTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        
         TableColumnModel columnModel = eventTable.getColumnModel();
         for (int i = 0; i < COLUMN_WIDTHS.length; i++) {
             columnModel.getColumn(i).setPreferredWidth(COLUMN_WIDTHS[i]);
         }
 
-        
-        eventTable.getTableHeader().setBackground(HEADER_BACKGROUND);
-        eventTable.getTableHeader().setForeground(Color.BLACK);
-        eventTable.getTableHeader().setFont(eventTable.getTableHeader().getFont().deriveFont(Font.BOLD));
-
-        
-        eventTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        // Create a custom cell renderer that wraps text
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
-                    boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value,
-                        isSelected, hasFocus, row, column);
+                                                           boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (c instanceof JLabel) {
+                    JLabel label = (JLabel) c;
+                    label.setText("<html><div style='width:" + table.getColumnModel().getColumn(column).getWidth() + "px;'>" + value + "</div></html>");
+                }
                 if (!isSelected) {
                     c.setBackground(row % 2 == 0 ? Color.WHITE : ALTERNATE_ROW_COLOR);
-                    c.setForeground(Color.BLACK);
                 }
                 return c;
             }
-        });
+        };
+
+        for (int i = 0; i < eventTable.getColumnCount(); i++) {
+            eventTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        }
+
+        eventTable.getTableHeader().setBackground(HEADER_BACKGROUND);
+        eventTable.getTableHeader().setForeground(Color.BLACK);
+        eventTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
+
+        eventTable.setShowGrid(true);
+        eventTable.setGridColor(Color.LIGHT_GRAY);
+        eventTable.setSelectionBackground(ALTERNATE_ROW_COLOR);
+        eventTable.setSelectionForeground(Color.BLACK);
+
+        eventTable.setFont(new Font("Arial", Font.PLAIN, 12));
     }
 
     /**
@@ -96,10 +103,10 @@ public class EventTablePanel extends JPanel {
         tableModel.setRowCount(0);
         for (Event event : schedule.getEvents()) {
             tableModel.addRow(new Object[]{
-                event.getTitle(),
-                event.getLocation(),
-                event.getFormattedStartDate(),
-                event.getFormattedStartTime() + " - " + event.getFormattedEndTime()
+                    event.getTitle(),
+                    event.getLocation(),
+                    event.getFormattedStartDate(),
+                    event.getFormattedStartTime() + " - " + event.getFormattedEndTime()
             });
         }
     }
